@@ -10,7 +10,7 @@ Entre na pasta:
 cd broutlet
 ```
 
-Subas os conteineres:
+Suba os conteineres:
 ```/bin/bash
 docker compose up --build -d
 ```
