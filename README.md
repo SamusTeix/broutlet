@@ -72,3 +72,5 @@ exit
 Agora o projeto já deve estar configurado e funcional:
 
 Acesse pelo link: <a target="_blank">http://localhost:8000</a>
+
+O usuário padrão é ```teste@teste.com```, senha ```123456```.
