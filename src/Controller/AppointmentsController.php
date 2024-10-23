@@ -181,43 +181,43 @@ class AppointmentsController extends AppController
 
     public function verifyAppointments($firstLoad = false)
     {
-        if (! Cache::read('firstLoad:' . $this->Auth->user('id'))) {
-            $this->setOnCache();
-        }
+        // if (! Cache::read('firstLoad:' . $this->Auth->user('id'))) {
+        //     $this->setOnCache();
+        // }
 
-        if (Cache::read('appointments:' . $this->Auth->user('id'))) {
-            Cache::write('appointments:' . $this->Auth->user('id'), false);
+        // if (Cache::read('appointments:' . $this->Auth->user('id'))) {
+        //     Cache::write('appointments:' . $this->Auth->user('id'), false);
 
-            return Helper::responseJson($this, [
-                'appointmentsList' => Cache::read('appointmentsList:' . $this->Auth->user('id'))
-            ]);
-        }
+        //     return Helper::responseJson($this, [
+        //         'appointmentsList' => Cache::read('appointmentsList:' . $this->Auth->user('id'))
+        //     ]);
+        // }
 
-        return Helper::responseJson($this, []);
+        // return Helper::responseJson($this, []);
     }
 
     private function setOnCache()
     {
-        Cache::write('firstLoad:' . $this->Auth->user('id'), true);
-        $appointments = $this->Appointments->find()
-            ->where([
-                'Appointments.date =' => date('Y-m-d'),
-                'Appointments.user_id =' => $this->Auth->user('id'),
-            ])->contain(['AppointmentTypes', 'Users']);
+        // Cache::write('firstLoad:' . $this->Auth->user('id'), true);
+        // $appointments = $this->Appointments->find()
+        //     ->where([
+        //         'Appointments.date =' => date('Y-m-d'),
+        //         'Appointments.user_id =' => $this->Auth->user('id'),
+        //     ])->contain(['AppointmentTypes', 'Users']);
 
-        if (count($appointments->toArray())) {
-            Cache::write('appointments:' . $this->Auth->user('id'), true);
+        // if (count($appointments->toArray())) {
+        //     Cache::write('appointments:' . $this->Auth->user('id'), true);
 
-            $toBeCached = [];
-            foreach($appointments as $appointment) {
-                $toBeCached[] = [
-                    "name" => $appointment->name,
-                    "moment" => $appointment->startTime->format('H:i'),
-                ];
-            }
+        //     $toBeCached = [];
+        //     foreach($appointments as $appointment) {
+        //         $toBeCached[] = [
+        //             "name" => $appointment->name,
+        //             "moment" => $appointment->startTime->format('H:i'),
+        //         ];
+        //     }
 
-            Cache::write('appointmentsList:' . $this->Auth->user('id'), json_encode($toBeCached));
-        }
+        //     Cache::write('appointmentsList:' . $this->Auth->user('id'), json_encode($toBeCached));
+        // }
         
     }
 }
