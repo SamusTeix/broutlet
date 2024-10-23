@@ -2,7 +2,7 @@
 
 <h3>Agendamentos</h3>
 <div class="buttons mb-3">
-    <?= $this->Html->link('Adicionar Agendamento', ['controller' => 'Appointments', 'action' => 'add', $day], ['class' => 'btn btn-success']) ?>
+    <?= $this->Html->link('Adicionar Agendamento', ['controller' => 'Appointments', 'action' => 'add', date('Y-m-d', strtotime(str_replace('/', '-', $day)))], ['class' => 'btn btn-success']) ?>
 </div>
 <table class="table">
     <thead>
